@@ -1,0 +1,21 @@
+﻿@page
+
+@model RegistrationModel
+@{
+    ViewData["MainHeading"] = "Register Student";
+}
+
+<h1>Registration</h1>
+
+<form method="post">
+    <label asp-for="Student.FirstName">First name:</label><br>
+    <input type="text" asp-for="Student.FirstName"><br>
+
+    <label asp-for="Student.LastName">Last name:</label><br>
+    <input asp-for="Student.LastName"><br><br>
+
+    <label asp-for="Student.PhoneNumber">Last name:</label><br>
+    <input asp-for="Student.PhoneNumber"><br><br>
+
+    <input type="submit" value="Submit">
+</form>

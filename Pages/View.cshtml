@@ -1,0 +1,32 @@
+﻿@page
+
+@model ViewModel
+@{
+    ViewData["MainHeading"] = "View Students";
+}
+
+<h1>View</h1>
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th></th>
+    </tr>
+    @foreach(var student in Model.Students)
+        {
+        <tr>
+            <td>@student.FirstName</td>
+            <td>@student.LastName</td>
+            <td>@student.PhoneNumber</td>
+            <td>
+                <a asp-page="/Edit" asp-route-id="@student.Id" asp-page-handler="Edit">Edit</a>
+                <a asp-page="/View" asp-page-handler="Delete" asp-route-id="@student.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    
+</table>
+
+
