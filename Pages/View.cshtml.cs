@@ -18,6 +18,10 @@ namespace RaorPages.Pages
 
         public IList<Student> Students;
 
+        [BindProperty(SupportsGet = true)]
+        public string searchString { get; set; }
+
+
         public ViewModel(ILogger<ViewModel> logger, SMSDbContext db)
         {
             _logger = logger;
@@ -28,9 +32,24 @@ namespace RaorPages.Pages
         {
             Students = await _db.Students.ToListAsync();
         }
-                
-        public async Task<ActionResult> OnGetDelete(int id)
+        
+        public async Task<IActionResult> OnGetDelete(int id, string handler)
         {
+
+            switch(handler)
+            { 
+                case("Delete"):
+                    return await DeleteStudent(id);
+
+                default:
+                    return RedirectToPage("View"); ;
+
+            }
+        }
+
+        public async Task<ActionResult> DeleteStudent(int id)
+        {
+
             var student = await _db.Students.FindAsync(id);
             if (student == null)
                 return NotFound();
@@ -39,7 +58,19 @@ namespace RaorPages.Pages
             await _db.SaveChangesAsync();
             return RedirectToPage("View");
         }
+
+        public async Task SearchStudent()
+        {
+            var students = from s in _db.Students
+                          select s;
+            if(!string.IsNullOrEmpty(searchString))
+                students = students.Where(s=>s.FirstName.Contains(searchString));
+
+            Students = await students.ToListAsync();
+        }
         
+
+
 
     }
 }

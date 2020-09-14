@@ -7,6 +7,11 @@
 
 <h1>View</h1>
 
+<form class="searchButton">
+    <input type="text" placeholder="Search.." asp-for="searchString">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
 <table>
     <tr>
         <th>First Name</th>
@@ -14,19 +19,19 @@
         <th>Phone Number</th>
         <th></th>
     </tr>
-    @foreach(var student in Model.Students)
-        {
+    @foreach (var student in Model.Students)
+    {
         <tr>
             <td>@student.FirstName</td>
             <td>@student.LastName</td>
             <td>@student.PhoneNumber</td>
             <td>
                 <a asp-page="/Edit" asp-route-id="@student.Id" asp-page-handler="Edit">Edit</a>
-                <a asp-page="/View" asp-page-handler="Delete" asp-route-id="@student.Id">Delete</a>
+                <a asp-page="/View" asp-route-id="@student.Id" asp-page-handler="Delete">Delete</a>
             </td>
         </tr>
-        }
-    
+    }
+
 </table>
 
 

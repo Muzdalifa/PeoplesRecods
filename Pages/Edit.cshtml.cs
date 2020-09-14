@@ -20,7 +20,8 @@ namespace RaorPages.Pages
 
         [BindProperty]
         public Student Student { get; set; }
-
+        
+        //when the page loaded it will be loaded with specified student id
         public void OnGet(int id)
         {
             var student = _db.Students.FirstOrDefault(x=> x.Id == id);
@@ -31,6 +32,7 @@ namespace RaorPages.Pages
                
         }
 
+        // Editing student
         public async Task<IActionResult> OnPost()
         {
             if(!ModelState.IsValid)
