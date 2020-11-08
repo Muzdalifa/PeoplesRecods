@@ -46,6 +46,7 @@ namespace RaorPages.Pages
                 student.FirstName = Student.FirstName;
                 student.LastName = Student.LastName;
                 student.PhoneNumber = Student.PhoneNumber;
+                student.ImageName = Student.ImageName;
                 _db.Update(student);
                
                 

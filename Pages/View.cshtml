@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 
 @model ViewModel
 @{
@@ -8,7 +8,7 @@
 <h1>View</h1>
 
 <form class="searchButton">
-    <input type="text" placeholder="Search.." asp-for="searchString">
+    <input type="text" placeholder="Search.." asp-for="SearchString">
     <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
@@ -17,19 +17,22 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Phone Number</th>
+        <th>Photo</th>
         <th></th>
     </tr>
     @foreach (var student in Model.Students)
     {
-        <tr>
-            <td>@student.FirstName</td>
-            <td>@student.LastName</td>
-            <td>@student.PhoneNumber</td>
-            <td>
-                <a asp-page="/Edit" asp-route-id="@student.Id" asp-page-handler="Edit">Edit</a>
-                <a asp-page="/View" asp-route-id="@student.Id" asp-page-handler="Delete">Delete</a>
-            </td>
-        </tr>
+<tr>
+    <td>@student.FirstName</td>
+    <td>@student.LastName</td>
+    <td>@student.PhoneNumber</td>
+    <td><img src="Images/@student.ImageName" width=30 height=30 /></td>
+    <td>
+        <a asp-page="/Edit" asp-route-id="@student.Id" asp-page-handler="Edit">Edit</a>
+        <a asp-page="/View" asp-route-id="@student.Id" asp-page-handler="Delete">Delete</a>
+        <a asp-page="/Details" asp-route-id="@student.Id" asp-page-handler="Details">Details</a>
+    </td>
+</tr>
     }
 
 </table>

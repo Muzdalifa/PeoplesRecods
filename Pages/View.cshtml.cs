@@ -19,7 +19,7 @@ namespace RaorPages.Pages
         public IList<Student> Students;
 
         [BindProperty(SupportsGet = true)]
-        public string searchString { get; set; }
+        public string SearchString { get; set; }
 
 
         public ViewModel(ILogger<ViewModel> logger, SMSDbContext db)
@@ -30,7 +30,20 @@ namespace RaorPages.Pages
 
         public async Task OnGetAsync()
         {
-            Students = await _db.Students.ToListAsync();
+            var students = from s in _db.Students
+                               select s;
+            
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                students = students.Where(s => s.FirstName.Contains(SearchString));
+
+                Students = await students.ToListAsync();
+            }
+            else
+            {
+                Students = await _db.Students.ToListAsync();
+            }           
+            
         }
         
         public async Task<IActionResult> OnGetDelete(int id, string handler)
@@ -59,16 +72,6 @@ namespace RaorPages.Pages
             return RedirectToPage("View");
         }
 
-        public async Task SearchStudent()
-        {
-            var students = from s in _db.Students
-                          select s;
-            if(!string.IsNullOrEmpty(searchString))
-                students = students.Where(s=>s.FirstName.Contains(searchString));
-
-            Students = await students.ToListAsync();
-        }
-        
 
 
 

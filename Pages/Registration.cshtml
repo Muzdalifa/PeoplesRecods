@@ -7,7 +7,7 @@
 
 <h1>Registration</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data" >
     <label asp-for="Student.FirstName">First name:</label><br>
     <input type="text" asp-for="Student.FirstName"><br>
 
@@ -16,6 +16,9 @@
 
     <label asp-for="Student.PhoneNumber">Phone number:</label><br>
     <input asp-for="Student.PhoneNumber"><br><br>
+
+    <label asp-for="Student.ImageFile">Upload Photo:</label><br>
+    <input type="file" asp-for="Student.ImageFile"><br><br>
 
     <input type="submit" value="Submit">
 </form>

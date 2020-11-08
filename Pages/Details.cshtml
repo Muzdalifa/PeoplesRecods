@@ -1,0 +1,28 @@
+﻿@page
+@model RaorPages.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Student Details</h1>
+<table class ="">
+    <tr>
+
+        <td><label>First Name: </label>@Model.Student.FirstName</td>
+        <td rowspan="3"><img src="Images/@Model.Student.ImageName" width=200 height=200 /></td>
+    </tr>
+
+    <tr>
+        <td><label>Last Name: </label> @Model.Student.LastName</td>
+    </tr>
+
+    <tr>
+        <td><label>Phone number: </label>@Model.Student.PhoneNumber</td>
+    </tr>
+
+</table>
+
+<div class="w3-container">
+    <a asp-page="/View" class="w3-button w3-black">Back</a>
+</div>
+
