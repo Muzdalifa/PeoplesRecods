@@ -78,7 +78,7 @@ td, th {
     padding: 8px;
 }
 
-tr:nth-child(even) {
+tr.view-table:nth-child(even) {
     background-color: #dddddd;
 }
 
