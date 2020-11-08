@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using RaorPages.Data;
 using RaorPages.Models;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 namespace RaorPages.Pages
 {
@@ -55,11 +57,16 @@ namespace RaorPages.Pages
             String imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "Images", imageName);
-            
-            using(var fileStream = new FileStream(imagePath, FileMode.Create))
+
+            //resizing image
+            using var image = Image.Load(imageFile.OpenReadStream());
+            image.Mutate(x => x.Resize(256, 256));
+            image.Save(imagePath);
+
+            /*using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(fileStream);
-            }
+            }*/
             return imageName;
 
         }
