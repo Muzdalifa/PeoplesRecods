@@ -29,8 +29,9 @@ namespace RaorPages
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SMSDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("SMSDevString")));
-
+            options.UseInMemoryDatabase("personsrecodsdb"));
+            //options.UseSqlServer(Configuration.GetConnectionString("SMSDevString")));
+            
             services.AddRazorPages();
         }
 
