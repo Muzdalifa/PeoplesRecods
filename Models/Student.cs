@@ -23,7 +23,7 @@ namespace RaorPages.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please fill the phone number")]
-        [RegularExpression(@"[+][0-9]*$", ErrorMessage = "Please start with + ")] //PhoneNumber has start with +
+        [RegularExpression(@"[+][0-9]*$", ErrorMessage = "Please start with country code ")] //PhoneNumber has start with +
         public string PhoneNumber { get; set; }
         
         public string ImageName { get; set; }
