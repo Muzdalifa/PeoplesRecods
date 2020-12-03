@@ -98,6 +98,9 @@ footer a {
     color:white !important
 }
 /*Model validation*/
-.text-danger{
-    color:red !important
+.text-danger {
+    color: red !important;
+    font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+    letter-spacing: .01em !important;
+    line-height: 1.6 !important;
 }
