@@ -41,12 +41,13 @@ namespace RaorPages.Pages
         {
             if(!ModelState.IsValid)
                 return Page();
-
+   
             Student.ImageName = await SaveImage(Student.ImageFile);
             _db.Students.Add(Student);
             await _db.SaveChangesAsync();
 
             return RedirectToPage("./View");
+            
         }
 
 
@@ -54,20 +55,23 @@ namespace RaorPages.Pages
 
         public async Task<string> SaveImage(IFormFile imageFile)
         {
-            String imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
-            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "Images", imageName);
-
-            //resizing image
-            using var image = Image.Load(imageFile.OpenReadStream());
-            image.Mutate(x => x.Resize(256, 256));
-            image.Save(imagePath);
-
-            /*using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            if (imageFile != null)
             {
-                await imageFile.CopyToAsync(fileStream);
-            }*/
-            return imageName;
+                String imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+                var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "Images", imageName);
+
+                //resizing image
+                using var image = Image.Load(imageFile.OpenReadStream());
+                image.Mutate(x => x.Resize(256, 256));
+                image.Save(imagePath);
+
+                return imageName;
+            }
+                else
+                {
+                    return string.Empty;
+                }           
 
         }
     }

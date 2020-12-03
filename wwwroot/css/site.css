@@ -1,7 +1,4 @@
-﻿/** {
-    box-sizing: border-box;
-}*/
-
+﻿
 /* Style the header */
 header {
     background-color: #666;
@@ -15,8 +12,6 @@ header {
 nav {
     float: left;
     width: 30%;
-    /*min-height: 300px; /* only for demonstration, should be removed */
-    /*background: #ccc;*/
     background-color: SlateBlue 30%;
     padding: 20px;
 }
@@ -33,7 +28,6 @@ article {
     padding: 20px;
     width: 70%;
     background-color: #f1f1f1;
-    /*/min-height: 300px; /* only for demonstration, should be removed */
 }
 section {
     display: flex;
@@ -45,14 +39,6 @@ section:after {
     content: "";
     display: table;
     clear: both;
-}
-
-/* Style the footer */
-footer {
-    background-color: #777;
-    padding: 2px;
-    text-align: center;
-    color: white;
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
@@ -80,7 +66,38 @@ tr.view-table:nth-child(even) {
     background-color: #dddddd;
 }
 
+button {
+    background-color: #777 !important;
+    color: white !important;
+    border: 0.1rem solid white !important;
+}
+.Back_btn {
+    background-color: #777 !important;
+    color: white !important;
+    border: 0.1rem solid white !important;
+}
 .searchButton {
     display:flex;
     justify-content: flex-end;
+}
+nav a {
+    color:#363434 !important;
+}
+table a {
+    color:#606C76;
+}
+
+/* Style the footer */
+footer {
+    background-color: #777;
+    padding: 10px 0px;
+    text-align: center;
+    color: white;
+}
+footer a {
+    color:white !important
+}
+/*Model validation*/
+.text-danger{
+    color:red !important
 }

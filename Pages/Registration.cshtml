@@ -2,21 +2,26 @@
 
 @model RegistrationModel
 @{
-    ViewData["MainHeading"] = "Register Student";
+    ViewData["MainHeading"] = "Register Person";
 }
 
-<form method="post" enctype="multipart/form-data" >
-    <label asp-for="Student.FirstName">First name:</label><br>
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <label asp-for="Student.FirstName">First name:</label>
+    <span asp-validation-for="Student.FirstName" class="text-danger"></span>
     <input type="text" asp-for="Student.FirstName"><br>
 
-    <label asp-for="Student.LastName">Last name:</label><br>
+
+    <label asp-for="Student.LastName">Last name:</label>
+    <span asp-validation-for="Student.LastName" class="text-danger"></span>
     <input asp-for="Student.LastName"><br><br>
 
     <label asp-for="Student.PhoneNumber">Phone number:</label><br>
+    <span asp-validation-for="Student.PhoneNumber" class="text-danger"></span>
     <input asp-for="Student.PhoneNumber"><br><br>
 
     <label asp-for="Student.ImageFile">Upload Photo:</label><br>
     <input type="file" asp-for="Student.ImageFile"><br><br>
 
-    <input type="submit" value="Submit">
+    <button type="submit" value="Submit" class="btn">Submit</button>
 </form>
