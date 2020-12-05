@@ -35,7 +35,7 @@ namespace RaorPages.Pages
             
             if (!string.IsNullOrEmpty(SearchString))
             {
-                students = students.Where(s => s.FirstName.Contains(SearchString));
+                students = students.Where(s => s.FirstName.ToLower().Contains(SearchString.ToLower()) || s.LastName.ToLower().Contains(SearchString.ToLower()));
 
                 Students = await students.ToListAsync();
             }
